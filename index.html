@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BarkaDevs</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2c3e50;
+        --secondary: #3498db;
+        --accent: #e74c3c;
+        --light: #f8f9fa;
+        --dark: #2c3e50;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #f0f2f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: var(--secondary);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(180deg, var(--light), var(--secondary)),
+          url('assets/bdevs.png') no-repeat center center/cover;
+        color: white;
+        padding: 5rem 2rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero img {
+        max-width: 60%;
+        height: auto;
+        margin-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Main Content */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .section-title p {
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Services Grid */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .service-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        padding: 0;
+      }
+
+      .service-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .service-image {
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      .service-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(79, 80, 135, 0.2) 0%,
+          rgba(0, 0, 0, 0.4) 100%
+        );
+      }
+
+      .service-content {
+        padding: 1.5rem;
+      }
+
+      .service-title {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--secondary);
+      }
+
+      .price-list {
+        list-style: none;
+        margin-bottom: 1rem;
+        padding: 0;
+      }
+
+      .price-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .price-item span:first-child {
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      .price-item span:last-child {
+        font-weight: bold;
+        color: var(--accent);
+      }
+
+      .note {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+
+      .contact-btn {
+        width: 100%;
+        display: inline-block;
+        background: var(--secondary);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        transition: background 0.3s ease;
+      }
+
+      .contact-btn:hover {
+        background: #2980b9;
+      }
+
+      /* Features Section */
+      .features {
+        background: var(--light);
+        padding: 4rem 0;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .feature-card {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+      }
+
+      /* Contact Section */
+      .contact {
+        background: white;
+        padding: 4rem 0;
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .contact-card {
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .contact-icon {
+        font-size: 2rem;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--secondary);
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .social-links {
+        margin: 1rem 0;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--dark);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .container {
+          padding: 2rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">Barka<span>Devs</span></a>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#features">Features</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <img src="assets/bdevs.png" alt="BarkaDevs Logo" />
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container">
+      <div class="section-title">
+        <h2>Our Services</h2>
+        <p>
+          Choose from our comprehensive range of development and documentation
+          services
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Documentation Services -->
+        <div class="service-card">
+          <div
+            class="service-image"
+            style="background-image: url('assets/documentation.png')"
+          ></div>
+          <div class="service-content">
+            <h2 class="service-title">Documentation Papers</h2>
+            <ul class="price-list">
+              <li class="price-item">
+                <span>Basic Documentation</span>
+                <span>₱500</span>
+              </li>
+              <li class="price-item">
+                <span>Intermediate Papers</span>
+                <span>₱1,000</span>
+              </li>
+              <li class="price-item">
+                <span>Thesis/Capstone</span>
+                <span>₱5,000</span>
+              </li>
+            </ul>
+            <p class="note">Includes research, formatting, and revisions</p>
+            <br />
+            <a href="#contact" class="contact-btn">Get Started</a>
+          </div>
+        </div>
+
+        <!-- Web Applications -->
+        <div class="service-card">
+          <div
+            class="service-image"
+            style="background-image: url('assets/application.png')"
+          ></div>
+          <div class="service-content">
+            <h2 class="service-title">Web Applications</h2>
+            <ul class="price-list">
+              <li class="price-item">
+                <span>Basic Website</span>
+                <span>₱2,500</span>
+              </li>
+              <li class="price-item">
+                <span>Dynamic Web App</span>
+                <span>₱10,000</span>
+              </li>
+              <li class="price-item">
+                <span>Thesis/Capstone</span>
+                <span>₱30,000*</span>
+              </li>
+            </ul>
+            <p class="note">
+              *Price negotiable depending on system requirements
+            </p>
+            <a href="#contact" class="contact-btn">Request Quote</a>
+          </div>
+        </div>
+
+        <!-- Mobile Applications -->
+        <div class="service-card">
+          <div
+            class="service-image"
+            style="background-image: url('assets/mobile-phone.png')"
+          ></div>
+          <div class="service-content">
+            <h2 class="service-title">Mobile Applications</h2>
+            <ul class="price-list">
+              <li class="price-item">
+                <span>Basic App</span>
+                <span>₱3,500</span>
+              </li>
+              <li class="price-item">
+                <span>Advanced App</span>
+                <span>₱15,000</span>
+              </li>
+              <li class="price-item">
+                <span>Thesis/Capstone</span>
+                <span>₱35,000*</span>
+              </li>
+            </ul>
+            <p class="note">
+              *Price negotiable depending on system requirements
+            </p>
+            <a href="#contact" class="contact-btn">Request Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Why Choose Us</h2>
+          <p>
+            We deliver excellence through our commitment to quality and
+            innovation
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <i class="fas fa-clock feature-icon"></i>
+            <h3>Quick Turnaround</h3>
+            <p>Fast delivery without compromising quality</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-code feature-icon"></i>
+            <h3>Clean Code</h3>
+            <p>Well-documented, maintainable solutions</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-users feature-icon"></i>
+            <h3>Expert Team</h3>
+            <p>Experienced developers at your service</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-headset feature-icon"></i>
+            <h3>24/7 Support</h3>
+            <p>Always available for assistance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Get In Touch</h2>
+          <p>Ready to start your project? Contact us today!</p>
+        </div>
+
+        <div class="contact-info">
+          <div class="contact-card">
+            <i class="fas fa-envelope contact-icon"></i>
+            <h3>Email</h3>
+            <p>barkadevszxc@gmail.com</p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-phone contact-icon"></i>
+            <h3>Phone</h3>
+            <p>+63 928 069 3642</p>
+          </div>
+          <div class="contact-card">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <h3>Location</h3>
+            <p>South Cotabato, Philippines</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61571358846172"
+            ><i class="fab fa-facebook"></i
+          ></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/BarkaDevs"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+        <p>&copy; 2025 BarkaDevs. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.style.padding = '0.5rem 0';
+          navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+          navbar.style.padding = '1rem 0';
+          navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+            });
+          }
+        });
+      });
+
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      document
+        .querySelectorAll('.service-card, .feature-card, .contact-card')
+        .forEach((card) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          observer.observe(card);
+        });
+    </script>
+  </body>
+</html>
